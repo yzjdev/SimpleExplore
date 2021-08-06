@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/drawer"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+		<android.support.design.widget.AppBarLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+			<com.yzj.eplorer.widget.BreadcrumbView
+				android:id="@+id/breadcrumb_view"
+				android:layout_width="match_parent"
+				android:layout_height="30dp"/>
+
+			<com.yzj.eplorer.widget.FixTabLayout
+				android:id="@+id/tab"
+				android:layout_width="match_parent"
+				android:layout_height="36dp"
+				app:tabIndicatorColor="#fff"/>
+
+		</android.support.design.widget.AppBarLayout>
+
+		<android.support.v4.view.ViewPager
+			android:layout_weight="1"
+			android:id="@+id/pager"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+	</LinearLayout>
+
+	<android.support.design.widget.NavigationView
+		android:id="@+id/main_nav"
+		android:layout_gravity="start"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		app:menu="@menu/main_navigation"/>
+
+</android.support.v4.widget.DrawerLayout>
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<group
+        android:orderInCategory="100"
+		android:id="@+id/group1"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/root"
+			android:icon="@drawable/icon_device_white_24dp"
+			android:title="根目录"/>
+		<item
+			android:id="@+id/storage"
+			android:icon="@drawable/icon_sdcard_white_24dp"
+			android:title="内部存储"/>
+		<item
+			android:id="@+id/add_other"
+
+			android:icon="@drawable/icon_add_white_24dp"
+			android:title="添加存储..."/>
+	</group>
+	<!--相片 下载 电影 音乐 图片 QQ  ||  屏幕截图-->
+	<group
+        android:orderInCategory="101"
+		android:id="@+id/group2"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/camera"
+			android:icon="@drawable/icon_camera_white_24dp"
+			android:title="相册"/>
+		<item
+			android:id="@+id/download"
+			android:icon="@drawable/icon_download_white_24dp"
+			android:title="下载"/>
+		<item
+			android:id="@+id/movie"
+			android:icon="@drawable/icon_video_white_24dp"
+			android:title="电影"/>
+		<item
+			android:id="@+id/music"
+			android:icon="@drawable/icon_audio_white_24dp"
+			android:title="音乐"/>
+		<item
+			android:id="@+id/picture"
+			android:icon="@drawable/icon_image_white_24dp"
+			android:title="图片"/>
+		<item
+			android:id="@+id/qqfile"
+			android:icon="@drawable/icon_qq_white_24dp"
+			android:title="QQ"/>
+    </group>
+	<group
+        android:orderInCategory="102"
+		android:id="@+id/group3"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/screenshot"
+			android:icon="@drawable/icon_directory_white_24dp"
+			android:title="屏幕截图"/>
+	</group>
+
+
+    <group
+        android:orderInCategory="103"
+		android:id="@+id/group4"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/about"
+			android:icon="@drawable/icon_about_white_24dp"
+			android:title="关于"/>
+
+		<item
+			android:id="@+id/setting"
+			android:icon="@drawable/icon_settings_white_24dp"
+			android:title="设置"/>
+
+		<item
+			android:id="@+id/exit"
+			android:icon="@drawable/icon_exit_white_24dp"
+			android:title="退出"/>
+	</group>
+</menu>
+

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_height="match_parent"
+	android:layout_width="wrap_content"
+	android:orientation="vertical">
+
+	<TableLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:stretchColumns="0,1">
+
+		<TableRow
+			android:id="@+id/item1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun1"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon1"
+					android:src="@drawable/action_copy"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title1"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="复制"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun2"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon2"
+					android:src="@drawable/action_cut"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title2"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="移动"/>
+			</LinearLayout>
+
+		</TableRow>
+
+
+		<TableRow
+			android:id="@+id/item2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun3"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon3"
+					android:src="@drawable/action_link"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title3"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="链接"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun4"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon4"
+					android:src="@drawable/action_rename"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title4"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="重命名"/>
+			</LinearLayout>
+
+		</TableRow>
+
+		<TableRow
+			android:id="@+id/item3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun5"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon5"
+					android:src="@drawable/action_delete"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title5"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="删除"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun6"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon6"
+					android:src="@drawable/action_compress"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title6"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="压缩"/>
+			</LinearLayout>
+
+		</TableRow>
+
+		<TableRow
+			android:id="@+id/item4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun7"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon7"
+					android:src="@drawable/action_information"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title7"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="属性"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun8"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon8"
+					android:src="@drawable/action_share"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title8"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="分享"/>
+			</LinearLayout>
+
+		</TableRow>
+
+		<TableRow
+			android:id="@+id/item5"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun9"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon9"
+					android:src="@drawable/action_uncompress"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title9"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="解压"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun10"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon10"
+					android:src="@drawable/action_signature"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title10"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="签名"/>
+			</LinearLayout>
+
+		</TableRow>
+
+
+		<TableRow
+			android:id="@+id/item6"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun11"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:id="@+id/icon11"
+					android:src="@drawable/action_open_mode"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title11"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="打开方式"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:background="?android:attr/selectableItemBackground"
+				android:id="@+id/fun12"
+				android:gravity="center_vertical"
+				android:padding="8dp"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:src="@drawable/action_bookmark"
+					android:id="@+id/icon12"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:id="@+id/title12"
+					android:layout_marginLeft="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="添加书签"/>
+			</LinearLayout>
+
+		</TableRow>
+	</TableLayout>
+</LinearLayout>
+
+

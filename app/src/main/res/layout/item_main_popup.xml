@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+			android:paddingLeft="12dp"
+			android:paddingRight="12dp"
+			android:paddingTop="8dp"
+			android:paddingBottom="8dp"
+            android:id="@+id/btn_close_curr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:gravity="center"
+            android:text="关闭当前"
+            android:textSize="16dp" />
+
+        <TextView
+			android:paddingLeft="12dp"
+			android:paddingRight="12dp"
+			android:paddingTop="8dp"
+			android:paddingBottom="8dp"
+            android:id="@+id/btn_close_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:gravity="center"
+            android:text="关闭其他"
+            android:textSize="16dp" />
+
+        <TextView
+			android:paddingLeft="12dp"
+			android:paddingRight="12dp"
+			android:paddingTop="8dp"
+			android:paddingBottom="8dp"
+            android:id="@+id/btn_close_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:gravity="center"
+            android:text="关闭所有"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+</LinearLayout>
