@@ -13,6 +13,7 @@
 # view res/layout/activity_crash.xml #generated:9
 # view res/layout/activity_log.xml #generated:9
 # view res/layout/activity_main.xml #generated:14
+# view res/layout/activity_tree.xml #generated:9
 # view res/layout/toolbar.xml #generated:3
 -keep class android.support.design.widget.AppBarLayout { <init>(...); }
 
@@ -22,7 +23,7 @@
 # view res/layout/design_bottom_sheet_dialog.xml #generated:26
 -keep class android.support.design.widget.CoordinatorLayout { <init>(...); }
 
-# view res/layout/activity_main.xml #generated:46
+# view res/layout/activity_main.xml #generated:51
 -keep class android.support.design.widget.NavigationView { <init>(...); }
 
 # view res/layout/design_layout_snackbar.xml #generated:18
@@ -105,6 +106,7 @@
 # view res/layout/activity_crash.xml #generated:14
 # view res/layout/activity_log.xml #generated:14
 # view res/layout/activity_main.xml #generated:19
+# view res/layout/activity_tree.xml #generated:14
 # view res/layout/toolbar.xml #generated:10
 # view v26/res/layout-v26/abc_screen_toolbar.xml #generated:37
 -keep class android.support.v7.widget.Toolbar { <init>(...); }
@@ -123,20 +125,26 @@
 # view AndroidManifest.xml #generated:14
 -keep class com.yzj.eplorer.App { <init>(...); }
 
-# view AndroidManifest.xml #generated:32
+# view AndroidManifest.xml #generated:33
 -keep class com.yzj.eplorer.CrashActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:33
+# view AndroidManifest.xml #generated:34
 -keep class com.yzj.eplorer.EditorActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:31
+# view AndroidManifest.xml #generated:32
 -keep class com.yzj.eplorer.LogActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:22
 -keep class com.yzj.eplorer.MainActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:31
+-keep class com.yzj.eplorer.TreeActivity { <init>(...); }
+
 # view res/layout/activity_main.xml #generated:25
 -keep class com.yzj.eplorer.widget.BreadcrumbView { <init>(...); }
+
+# view res/layout/activity_main.xml #generated:44
+-keep class com.yzj.eplorer.widget.FixSnackBar { <init>(...); }
 
 # view res/layout/activity_main.xml #generated:30
 -keep class com.yzj.eplorer.widget.FixTabLayout { <init>(...); }

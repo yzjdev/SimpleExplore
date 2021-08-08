@@ -1,18 +1,23 @@
 package com.yzj.utils;
 
 import android.content.ContentResolver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
 import android.support.v4.provider.DocumentFile;
+import android.text.TextUtils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.List;
 import com.yzj.eplorer.LogActivity;
 
 
@@ -88,7 +93,7 @@ public class FileUtil {
 		return null;
     }
 
-	public static void copy(InputStream in, OutputStream out) {
+	private static void copy(InputStream in, OutputStream out) {
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
 		try {
@@ -104,11 +109,99 @@ public class FileUtil {
 		} catch (IOException e) {}
 	}
 
-	public static void copy(String old, String dest) {
-		try {
-			copy(IOUtil.newInputStream(old), IOUtil.newOutputStream(dest));
-		} catch (IOException e) {}
+	public static boolean copy(String old, String dest) {
+		List<String> arr=Arrays.asList(old.split("/"));
+		List<String> arr2=Arrays.asList(dest.split("/"));
+		if(arr.size()<arr2.size()){
+			int index=arr.indexOf(getName(old));
+			if(arr2.get(index).equals(getName(old)))
+				return false;
+		}try {
+			if (SystemUtil.isPrivacyFile(old)) 
+				copyFromPrivacy(old, dest);
+			else
+				copyTo(old, dest);
+			return true;
+		} catch (Exception e) {}
+		return false;
 	}
+
+	//android11从ExternalFiles复制文件
+	//param 源文件 不存在则return
+	//param 目标文件夹 如果传入的路径存在且为文件则return
+	private static void copyFromPrivacy(String old, String dest)throws Exception {
+		if (!exists(old)) return;
+		if (exists(dest) && isFile(dest))return;
+		if (isFile(old)) {
+			if (SystemUtil.isPrivacyFile(dest)) {
+				createNewFile(dest + "/" + getName(old));
+				copy(IOUtil.newInputStream(old), IOUtil.newOutputStream(String.format("%s/%s", dest, getName(old))));
+			} else {
+				copy(IOUtil.newInputStream(old), IOUtil.newOutputStream(String.format("%s/%s", dest, getName(old))));
+			}
+		} else {
+			if (!exists(dest + "/" + getName(old))) {
+				mkdirs(dest + "/" + getName(old));
+			}
+			Uri dirUri=UriUtil.fromPath(old);
+			Uri childrenUri= DocumentsContract.buildChildDocumentsUriUsingTree(dirUri, DocumentsContract.getDocumentId(dirUri));
+			String[] proj= new String[] {
+				DocumentsContract.Document.COLUMN_DISPLAY_NAME,//文件名
+			};
+			Cursor cursor= getContentResolver().query(childrenUri, proj, null, null, null);
+			if (cursor == null) return;
+			while (cursor.moveToNext()) {
+				String name=cursor.getString(0);
+				copyFromPrivacy(old + "/" + name, dest + "/" + getName(old));
+			}
+			cursor.close();
+
+		}
+	}
+
+	private static void copyTo(String old, String dest)throws Exception {
+		if (!exists(old))return;
+		if (exists(dest) && isFile(dest))return;
+
+		if (isFile(old)) {
+			if (SystemUtil.isPrivacyFile(dest)) {
+				createNewFile(dest + "/" + getName(old));
+				copy(IOUtil.newInputStream(old), IOUtil.newOutputStream(String.format("%s/%s", dest, getName(old))));	
+			} else {
+				copy(IOUtil.newInputStream(old), IOUtil.newOutputStream(dest + "/" + getName(old)));
+			}
+		} else {
+			String newFile=dest + "/" + getName(old);
+			if (!exists(newFile))
+				mkdirs(newFile);
+			for (File f:new File(old).listFiles()) {
+				copy(f.getPath(), newFile);
+			}
+		}
+
+	}
+
+	public static boolean isDirectory(String path) {
+		if (SystemUtil.isPrivacyFile(path)) {
+			return DocumentsContract.Document.MIME_TYPE_DIR.equals(getRawType(UriUtil.fromPath(path)));
+		} else {
+			return new File(path).isDirectory();
+		}
+	}
+
+	public static boolean isFile(String path) {
+		if (SystemUtil.isPrivacyFile(path)) {
+			final String type = getRawType(UriUtil.fromPath(path));
+			if (DocumentsContract.Document.MIME_TYPE_DIR.equals(type) || TextUtils.isEmpty(type)) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return new File(path).isFile();
+		}
+	}
+
 	//复制asset文件到sd卡
     public static void copyAssetsFile(String fileName, String destFileName) {
 		try {
@@ -129,9 +222,10 @@ public class FileUtil {
 		} else {
 			return delete(new File(path));
 		}
+		//return false;
 	}
 
-	public static boolean delete(File file) {
+	private static boolean delete(File file) {
 		if (file.isFile())
 			return file.delete();
 		else {
@@ -144,25 +238,47 @@ public class FileUtil {
 
     //重命名文件：源文件完整路径 新名称
     public static boolean renameTo(String old, String newName) {
+		if (SystemUtil.isPrivacyFile(old)) {
+			try {
+				return null != DocumentsContract.renameDocument(getContentResolver(), UriUtil.fromPath(old), newName);
+			} catch (FileNotFoundException e) {
+			}
+		}
 		return renameTo(new File(old), newName);
     }
 
-	public static boolean renameTo(File old, String newName) {
+	private static boolean renameTo(File old, String newName) {
 		if (!old.exists()) return false;
 		return old.renameTo(new File(old.getParent() + "/" + newName));
 	}
 
 	//移动文件：源文件完整路径 目标文件夹路径
 	public static boolean moveFile(String old, String dest) {
-		return moveFile(new File(old), new File(dest));
+		if(getParent(old).equals(dest))
+			return false;
+		List<String> arr=Arrays.asList(old.split("/"));
+		List<String> arr2=Arrays.asList(dest.split("/"));
+		if(arr.size()<arr2.size()){
+			int index=arr.indexOf(getName(old));
+			if(arr2.get(index).equals(getName(old)))
+				return false;
+		}
+		try {
+			if (SystemUtil.isPrivacyFile(old) && SystemUtil.isPrivacyFile(dest)) {
+				Uri sourceDocumentUri=UriUtil.fromPath(old);
+				Uri sourceParentDocumentUri=UriUtil.fromPath(getParent(old));
+				Uri targetParentDocumentUri=UriUtil.fromPath(dest);
+				return null != DocumentsContract.moveDocument(getContentResolver(), sourceDocumentUri, sourceParentDocumentUri, targetParentDocumentUri);
+			}else if(!SystemUtil.isPrivacyFile(old) && !SystemUtil.isPrivacyFile(dest)){
+				return new File(old).renameTo(new File(dest,getName(old)));
+			}else{
+				if(copy(old,dest))
+					return delete(old);
+			}
+		} catch (FileNotFoundException e) {}
+		return false;
 	}
-	public static boolean moveFile(File oldFile, File destDir) {
-		if (!oldFile.exists()) return false;
-		if (destDir.isFile()) return false;
-		if (!destDir.exists())
-			destDir.mkdirs();
-		return oldFile.renameTo(new File(destDir, oldFile.getName()));
-	}
+
 
 	public static boolean createNewFile(String path) {
 		try {
@@ -215,4 +331,83 @@ public class FileUtil {
 			return new File(path).getName();
 		}
 	}
+
+
+    private static String getRawType(Uri self) {
+        return queryForString(self, DocumentsContract.Document.COLUMN_MIME_TYPE, null);
+    }
+
+    private static String queryForString(Uri self, String column, String defaultValue) {
+        final ContentResolver resolver = Utils.getApp().getContentResolver();
+        Cursor c = null;
+        try {
+            c = resolver.query(self, new String[] { column }, null, null, null);
+            if (c.moveToFirst() && !c.isNull(0)) {
+                return c.getString(0);
+            } else {
+                return defaultValue;
+            }
+        } catch (Exception e) {
+            return defaultValue;
+        } finally {
+            closeQuietly(c);
+        }
+    }
+
+	public static ContentResolver getContentResolver() {
+		return Utils.getApp().getContentResolver();
+	}
+	public static boolean exists(String path) {
+		if (SystemUtil.isPrivacyFile(path)) {
+			return exists(UriUtil.fromPath(path));
+		} else {
+			return new File(path).exists();
+		}
+	}
+	private static boolean exists(Uri self) {
+        final ContentResolver resolver =getContentResolver();
+
+        Cursor c = null;
+        try {
+            c = resolver.query(self, new String[] {DocumentsContract.Document.COLUMN_DOCUMENT_ID }, null, null, null);
+            return c.getCount() > 0;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            closeQuietly(c);
+        }
+    }
+
+    private static int queryForInt(Uri self, String column, int defaultValue) {
+        return (int) queryForLong(self, column, defaultValue);
+    }
+
+    private static long queryForLong(Uri self, String column, long defaultValue) {
+        final ContentResolver resolver = Utils.getApp().getContentResolver();
+
+        Cursor c = null;
+        try {
+            c = resolver.query(self, new String[] { column }, null, null, null);
+            if (c.moveToFirst() && !c.isNull(0)) {
+                return c.getLong(0);
+            } else {
+                return defaultValue;
+            }
+        } catch (Exception e) {
+            return defaultValue;
+        } finally {
+            closeQuietly(c);
+        }
+    }
+
+    private static void closeQuietly(AutoCloseable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (RuntimeException rethrown) {
+                throw rethrown;
+            } catch (Exception ignored) {
+            }
+        }
+    }
 }

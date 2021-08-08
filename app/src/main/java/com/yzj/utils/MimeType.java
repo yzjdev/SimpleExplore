@@ -21,8 +21,9 @@ public class MimeType {
 
     }
 
-    public boolean isArchiveFile(String path) {
-        return getExt(path).equalsIgnoreCase("zip");
+    public static boolean isArchiveFile(String path) {
+		String[] types={"zip","apk"};
+		return Arrays.asList(types).contains(getExt(path));
 	}
 
 	public boolean isPdfFile(String file) {

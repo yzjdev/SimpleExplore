@@ -28,6 +28,8 @@ public class FileActionDialog implements View.OnClickListener{
 
 	//
 	public TableRow item1,item2,item3,item4,item5,item6;
+
+	//1复制 2移动 3链接 4重命名 5删除 6压缩 7属性 8分享 9解压 10签名 11打开方式 12添加书签
 	public LinearLayout fun1,fun2,fun3,fun4,fun5,fun6,fun7,fun8,fun9,fun10,fun11,fun12;
 	public ImageView icon1,icon2,icon3,icon4,icon5,icon6,icon7,icon8,icon9,icon10,icon11,icon12;
 	public TextView title1,title2,title3,title4,title5,title6,title7,title8,title9,title10,title11,title12;

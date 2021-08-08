@@ -1,0 +1,25 @@
+srikanth-lingala/zip4j
+https://github.com/srikanth-lingala/zip4j
+Zip4j - A Java library for zip files / streams
+implementation 'net.lingala.zip4j:zip4j:2.9.0'
+
+bumptech/glide
+https://github.com/bumptech/glide
+Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
+implementation 'com.github.bumptech.glide:glide:4.6.1'
+
+BigBadaboom/androidsvg
+https://github.com/BigBadaboom/androidsvg
+implementation 'com.caverock:androidsvg-aar:1.4'
+AndroidSVG is a SVG parser and renderer for Android. It has almost complete support for the static visual elements of the SVG 1.1 and SVG 1.2 Tiny specifications (except for filters).
+
+wangjiegulu/ShadowViewHelper
+https://github.com/wangjiegulu/ShadowViewHelper
+Shadow layout, shadow view for android.
+
+goweii/LazyFragment
+https://github.com/goweii/LazyFragment
+
+coolwho/fastedit
+https://github.com/coolwho/fastedit
+安卓端高性能输入框，支持100万文字流畅显示与编辑，可用于开发语法高亮代码编辑器。

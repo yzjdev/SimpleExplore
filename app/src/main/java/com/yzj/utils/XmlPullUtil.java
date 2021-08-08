@@ -7,13 +7,48 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 public class XmlPullUtil {
+	
+	public static XmlPullParser newPullParser(String path) {
+		XmlPullParser pullParser=null;
+		try {
+			XmlPullParserFactory factory=XmlPullParserFactory.newInstance();
+			pullParser = factory.newPullParser();
+			pullParser.setInput(IOUtil.newBufferedReader(path));
+		} catch (Exception e) {}
+		return pullParser;
+	}
+	
+	public static boolean checkIsVector(String path) {
+		try {
+			XmlPullParser pullParser=newPullParser(path);
+			int eventType = pullParser.getEventType();
+			boolean isStart=false;
+			boolean isEnd=false;
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+				String nodeName = pullParser.getName();
+				switch (eventType) {
+					case XmlPullParser.START_TAG:
+						if ("vector".equals(nodeName)) 
+							isStart = true;
+						break;
+					case XmlPullParser.END_TAG:
+						if ("vector".equals(nodeName)) 
+							isEnd = true;
+						break;
+					default:
+				}
+				eventType = pullParser.next();//读取下一个标签
+			}
+			if(isStart && isEnd)
+				return true;
+		} catch (Exception e) {}
+		return false;
+	}
+	
+	
 	public static boolean svg2xml(String svgPath) {
 		try {
-			//得到XML解析器
-			XmlPullParserFactory factory=XmlPullParserFactory.newInstance();
-			XmlPullParser pullParser= factory.newPullParser();
-			pullParser.setInput(IOUtil.newBufferedReader(svgPath));
-			//得到事件类型
+			XmlPullParser pullParser=newPullParser(svgPath);
 			int eventType = pullParser.getEventType();
 			//文档的末尾
 			//遍历内部的内容
@@ -62,7 +97,7 @@ public class XmlPullUtil {
 							  "	<path\n" +
 							  "		android:fillColor=\"%s\"\n" +
 							  "		android:pathData=\"%s\"/>\n"
-							  , fills.get(i)==null?"#FF000000":fills.get(i), ds.get(i)));
+							  , fills.get(i) == null ?"#FF000000": fills.get(i), ds.get(i)));
 			}
 			sb.append("</vector>");
 			FileUtil.writeText(svgPath.substring(0, svgPath.lastIndexOf(".")) + ".xml", sb.toString().trim());

@@ -31,6 +31,7 @@ import com.yzj.utils.ToastUtil;
 import java.util.ArrayList;
 import java.util.List;
 import com.yzj.utils.UriUtil;
+import com.yzj.eplorer.widget.FixSnackBar;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BreadcrumbView.OnClickListener, TabLayout.OnTabSelectedListener {
 
@@ -45,6 +46,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	PagerAdapter mPagerAdapter;
 	NavigationView mNavgationView;
 	public BreadcrumbView mBreadcrumbView;
+	public FixSnackBar mSnackbar;
 	@Override
 	public int getLayoutId() {
 		return R.layout.activity_main;
@@ -58,6 +60,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		mTab = findViewById(R.id.tab);
 		mBreadcrumbView = findViewById(R.id.breadcrumb_view);
 		mNavgationView=findViewById(R.id.main_nav);
+		mSnackbar=findViewById(R.id.snackbar);
 	}
 
 	@Override
@@ -147,6 +150,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.action_multi_select:
+				mSnackbar.toggle();
+				break;
 			case R.id.action_new_file:
 				dialog = new EditTextDialog(mActivity);
 

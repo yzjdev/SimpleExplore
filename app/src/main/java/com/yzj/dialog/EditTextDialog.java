@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import com.yzj.utils.UiUtil;
 import android.support.v7.app.AlertDialog.Builder;
+import android.content.DialogInterface.OnClickListener;
 
 public class EditTextDialog extends AlertDialog.Builder{
 	EditText et;
@@ -18,11 +19,29 @@ public class EditTextDialog extends AlertDialog.Builder{
 	}
 
 	@Override
-	public AlertDialog.Builder setMessage(CharSequence message) {
+	public EditTextDialog setTitle(CharSequence text) {
+		super.setTitle(text);
+		return this;
+	}
+
+	public EditTextDialog setMessage(CharSequence message) {
 		et.setText(message);
 		return this;
 	}
 
+	@Override
+	public EditTextDialog setPositiveButton(CharSequence text, DialogInterface.OnClickListener listener) {
+		super.setPositiveButton(text, listener);
+		return this;
+	}
+
+	@Override
+	public EditTextDialog setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
+		super.setNegativeButton(text, listener);
+		return this;
+	}
+
+	
 	
 	@Override
 	public AlertDialog show() {

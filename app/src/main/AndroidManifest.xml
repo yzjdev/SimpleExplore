@@ -31,6 +31,8 @@
 
         </activity>
 
+		<activity android:name="com.yzj.eplorer.TreeActivity"/>
+
 		<activity android:name="com.yzj.eplorer.LogActivity"/>
 
 		<activity android:name="com.yzj.eplorer.CrashActivity"/>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:elevation="4dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="12dp">
+
+		<ImageView
+			android:backgroundTint="#000000"
+			android:layout_centerVertical="true"
+			android:background="@drawable/action_open_mode"
+			android:id="@+id/icon"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="8dp"/>
+
+		<TextView
+			android:id="@+id/title"
+			android:textSize="14sp"
+			android:textStyle="bold"
+			android:layout_centerVertical="true"
+			android:layout_toRightOf="@id/icon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="已选"/>
+
+		<ImageView
+			android:id="@+id/action"
+			android:backgroundTint="#000000"
+			android:layout_centerVertical="true"
+			android:layout_alignParentRight="true"
+			android:background="@drawable/action_cut"
+			android:layout_gravity="right"
+			android:layout_width="24dp"
+			android:layout_height="24dp"/>
+	</RelativeLayout>
+	

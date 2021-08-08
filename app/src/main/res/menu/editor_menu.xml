@@ -4,13 +4,134 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AlwaysShowAction">
-
+	<item
+        android:icon="@drawable/action_undo"
+        android:id="@+id/action_undo"
+        android:orderInCategory="100"
+        android:title="撤销"
+		app:showAsAction="always|collapseActionView"/>
+	
+	<item
+        android:icon="@drawable/action_redo"
+        android:id="@+id/action_redo"
+        android:orderInCategory="100"
+        android:title="恢复"
+		app:showAsAction="always|collapseActionView"/>
+	
+	
     <item
         android:icon="@drawable/action_save"
         android:id="@+id/action_save"
         android:orderInCategory="100"
         android:title="保存"
 		app:showAsAction="always|collapseActionView"/>
+
+	<item
+        android:icon="@drawable/action_edit"
+        android:id="@+id/action_edit"
+        android:orderInCategory="100"
+        android:title="编辑"
+		app:showAsAction="always|collapseActionView">
+
+		<menu>
+
+            <item
+                android:id="@+id/action"
+                android:title="复制行" />
+            <item
+                android:id="@+id/action"
+                android:title="剪切行" />
+            <item
+                android:id="@+id/action"
+                android:title="删除行" />
+            <item
+                android:id="@+id/action"
+                android:title="替换行" />
+            <item
+                android:id="@+id/action"
+                android:title="重复行" />
+
+            <item
+                android:id="@+id/action"
+                android:title="转为大写" />
+
+            <item
+                android:id="@+id/action"
+                android:title="转为小写" />
+
+
+            <item
+                android:id="@+id/action"
+                android:title="增加缩进" />
+            <item
+                android:id="@+id/action"
+                android:title="减小缩进" />
+
+            <item
+                android:id="@+id/action"
+                android:title="切换注释" />
+            <item
+                android:id="@+id/action"
+                android:title="格式化代码" />
+		</menu>
+		
+		</item>
+	<item
+        android:id="@+id/action_file"
+        android:orderInCategory="100"
+        android:title="文件"
+        app:showAsAction="never" />
+
+	<item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="搜索"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="语法"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="上个位置"
+        app:showAsAction="never" />
 	
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="下个位置"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="转到指定行"
+        app:showAsAction="never" />
+	
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+		android:checked="false"
+		android:checkable="true"
+        android:title="自动换行"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="只读模式"
+		android:checked="false"
+		android:checkable="true"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="设置"
+        app:showAsAction="never" />
+	<item
+        android:id="@+id/action_summer"
+        android:orderInCategory="100"
+        android:title="退出"
+        app:showAsAction="never" />
 	
 </menu>

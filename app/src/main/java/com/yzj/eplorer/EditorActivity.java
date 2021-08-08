@@ -7,8 +7,10 @@ import com.yzj.base.BaseActivity;
 import com.yzj.fastedit.CodeEditor;
 import com.yzj.utils.FileUtil;
 import android.view.MenuItem;
+import com.yzj.utils.ToastUtil;
 
 public class EditorActivity extends BaseActivity {
+
 
 	Menu menu;
 	CodeEditor editor;
@@ -21,26 +23,26 @@ public class EditorActivity extends BaseActivity {
 
 	@Override
 	public void initView() {
-		mToolbar=findViewById(R.id.toolbar);
+		mToolbar = findViewById(R.id.toolbar);
 		editor = findViewById(R.id.editor);
 	}
 
 	@Override
 	public void initData() {
-		setTitle("文本编辑器");
 		path = getIntent().getStringExtra("path");
+		setTitle(FileUtil.getName(path));
 		text = FileUtil.readText(path);
 		editor.setText(text);
-		
+
 	}
 
-	public void test(View v){
-		if(menu!=null){
+	public void test(View v) {
+		if (menu != null) {
 			MenuItem item= menu.findItem(R.id.action_save);
-			if(item.isEnabled()){
+			if (item.isEnabled()) {
 				item.setEnabled(false);
-				item.getIcon().setAlpha(120);
-			}else{
+				item.getIcon().setAlpha(128);
+			} else {
 				item.setEnabled(true);
 				item.getIcon().setAlpha(255);
 			}
@@ -49,12 +51,30 @@ public class EditorActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		this.menu=menu;
-		getMenuInflater().inflate(R.menu.editor_menu,menu);
+		this.menu = menu;
+		getMenuInflater().inflate(R.menu.editor_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_undo:
+				if (editor.canUndo())
+					editor.undo();
+				break;
+			case R.id.action_redo:
+				if (editor.canRedo())
+					editor.redo();
+				break;
+			case R.id.action_save:
+				break;
+			default:
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
 
     public static void openFile(Context context, String path) {
 		Intent intent=new Intent(context, EditorActivity.class);
@@ -62,8 +82,8 @@ public class EditorActivity extends BaseActivity {
 		context.startActivity(intent);
 	}
 
-    public static void openFile( String path) {
-		Intent intent=new Intent(App.getApp(),EditorActivity.class);
+    public static void openFile(String path) {
+		Intent intent=new Intent(App.getApp(), EditorActivity.class);
 		intent.putExtra("path", path);
 		App.getApp().startActivity(intent);
 	}

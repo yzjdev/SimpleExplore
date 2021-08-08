@@ -4,33 +4,19 @@
 	android:orientation="horizontal"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	android:padding="8dp"
 	android:gravity="center_vertical">
 
-	
-	<Switch
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/btnOpenOrClose"/>
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="图标"
+	<ImageView
+		android:layout_width="24dp"
+		android:layout_height="24dp"
 		android:id="@+id/icon"/>
-	
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="标题"
-		android:layout_marginLeft="10dp"
-		android:id="@+id/title"/>
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="子项数量"
-		android:layout_marginLeft="10dp"
-		android:id="@+id/count"/>
+		android:text="Text"
+		android:id="@+id/name"/>
 
 </LinearLayout>
 

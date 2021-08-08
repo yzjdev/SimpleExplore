@@ -15,6 +15,7 @@ import com.yzj.eplorer.R;
 import java.util.Arrays;
 import java.util.List;
 import com.yzj.utils.ToastUtil;
+import com.yzj.utils.ResUtil;
 
 public class BreadcrumbView extends HorizontalScrollView {
 
@@ -40,10 +41,6 @@ public class BreadcrumbView extends HorizontalScrollView {
 		main.setGravity(Gravity.CENTER_VERTICAL);
 		main.setPadding(dp2px(8),dp2px(4),dp2px(8),dp2px(4));
 		addView(main);
-		//获取attrId
-		TypedValue typedValue = new TypedValue();
-		int[] attribute = new int[]{android.R.attr.selectableItemBackground};
-        typedArray = getContext().getTheme().obtainStyledAttributes(typedValue.resourceId, attribute);
 		
 	}
 
@@ -72,7 +69,7 @@ public class BreadcrumbView extends HorizontalScrollView {
 			
 			TextView tv=new TextView(context);
 			tv.setText(s);
-			tv.setBackground(typedArray.getDrawable(0));
+			tv.setBackground(ResUtil.getSelectableItemBackground());
 			int dp4=dp2px(4);
 			tv.setPadding(dp4,dp4/2,dp4,dp4/2);
 			tv.setOnClickListener(new View.OnClickListener(){

@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.yzj.eplorer.TreeActivity" />
         <activity android:name="com.yzj.eplorer.LogActivity" />
         <activity android:name="com.yzj.eplorer.CrashActivity" />
         <activity android:name="com.yzj.eplorer.EditorActivity" />
